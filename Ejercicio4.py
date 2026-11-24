@@ -15,7 +15,7 @@ class Dado:
     def __init__(self, nombre: str, numero_tiradas: int):
         self.nombre = nombre
         self.numero_tiradas = numero_tiradas
-        
+
         # Creación de la lista de las tiradas del dado
         total_tiradas = []
         for numero_dado in range(numero_tiradas):
@@ -56,7 +56,11 @@ class Dado:
     def tiradas(self, otro):
         if not isinstance(otro, list):
             raise TypeError("El valor introducido no es una lista")
-        elif 1 not in otro and 2 not in otro and 3 not in otro and 4 not in otro and 5 not in otro and 6 not in otro:
+        valor_correcto = True
+        for numero in otro:
+            if numero not in [1, 2, 3, 4, 5, 6]:
+                valor_correcto = False
+        if not valor_correcto:
             raise ValueError("Los valores introducidos en la lista no son correctos (solo pueden ser numeros del 1 al 6)")
         else:
             self.__tiradas = otro
